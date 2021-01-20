@@ -44,7 +44,7 @@ public class ProcessFile {
 
                     Integer i=0;
                     for (char c : ch) {
-                        if (Character.compare(c,sep) == 0) {
+                        if (Character.valueOf(c) == Character.valueOf('-')) {
                             idxList.add(i);
                         }
                         i++;
