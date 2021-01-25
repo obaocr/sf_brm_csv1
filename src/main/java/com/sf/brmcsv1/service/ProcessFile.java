@@ -11,6 +11,11 @@ import java.util.*;
 
 public class ProcessFile {
 
+    /**
+     *
+     * @param filePath pour le fichier des plans actions inspecteur
+     * @return map des inspecteur  + Id plan action inspecteur
+     */
     public static Map<String, String> getMapInspIdFromFile(String filePath) {
         List<List<String>> result = new ArrayList<>();
         Map<String, String> mapInspId = new TreeMap<>();
@@ -30,6 +35,16 @@ public class ProcessFile {
         }
     }
 
+    /**
+     *
+     * @param filePath fichier final suivi commercial complete des idParent plan action inspecteur
+     * @param mapInspId
+     * @param fileOut
+     * @return
+     * parcours du fichier, on écarte la ligne header de l'analmyse
+     *  on calcule extrait l'inspecteur du champ name(4), encadré par "-" à partir de la fin
+     *  on cherche l'id pour cet inspecteur puis on comple le fichier (champ0)
+     */
     public static List<List<String>> setIdToCsvFile(String filePath, Map<String, String> mapInspId, String fileOut) {
         List<List<String>> result = new ArrayList<>();
         try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
@@ -37,7 +52,6 @@ public class ProcessFile {
             String[] values;
             char sep = '-';
             while ((values = csvReader.readNext()) != null) {
-
                 if (!values[0].equals("scPrincipal__c")) {
                     List<Integer> idxList = new ArrayList<>();
                     char[] ch = values[4].toCharArray();
@@ -73,6 +87,9 @@ public class ProcessFile {
             for (String[] line : lines) {
                 csvWriter.writeNext(line);
             }
+            csvWriter.close();
+            System.out.println("lines = " + lines.size());
+            System.out.println("result = " + result.size());
             return result;
         } catch (Exception e) {
             System.out.println("exception = " + e.toString());

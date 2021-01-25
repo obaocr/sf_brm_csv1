@@ -9,21 +9,18 @@ import java.util.Map;
 
 @SpringBootApplication
 public class Brmcsv1Application {
-
     public static void main(String[] args) {
         SpringApplication.run(Brmcsv1Application.class, args);
         // Fichier en entrée avec les Id
-        final String file1 = "C:/Temp_SF/_MEP_20210204/BRM-01-INSERT-SuiviCommercial-PlanAction_Inspecteur_Pilote_success.csv";
+        final String file1 = "C:/_Temp_SF/_MEP_20210204/BRM-01-INSERT-SuiviCommercial-PlanAction_Inspecteur_Pilote_success.csv";
         // Fichier en entrée pour peupler les Id
-        final String file2 = "C:/Temp_SF/_MEP_20210204/BRM-02-INSERT-SuiviCommercial-Plan_Action_Courtier_Pilote.csv";
+        final String file2 = "C:/_Temp_SF/_MEP_20210204/BRM-02-INSERT-SuiviCommercial-Plan_Action_Courtier_Pilote.csv";
         // Nom du fichier de sortie
-        final String fileOut = "C:/Temp_SF/_MEP_20210204/BRM-02-INSERT-SuiviCommercial-Plan_Action_Courtier_Pilote_Final.csv";
+        final String fileOut = "C:/_Temp_SF/_MEP_20210204/BRM-02-INSERT-SuiviCommercial-Plan_Action_Courtier_Pilote_Final.csv";
 
         Map<String, String> mapInspId = ProcessFile.getMapInspIdFromFile(file1);
         System.out.println("mapInspId = " + mapInspId);
         List<List<String>> result = ProcessFile.setIdToCsvFile(file2, mapInspId, fileOut);
-        System.out.println("result = " + result);
-
+        System.out.println("result lines = " + result.size());
     }
-
 }
