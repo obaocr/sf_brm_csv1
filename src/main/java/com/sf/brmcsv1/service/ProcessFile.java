@@ -14,7 +14,7 @@ public class ProcessFile {
     /**
      *
      * @param filePath pour le fichier des plans actions inspecteur
-     * @return map des inspecteur  + Id plan action inspecteur
+     * @return map des inspecteur  + Id plan action inspecteur ...
      */
     public static Map<String, String> getMapInspIdFromFile(String filePath) {
         List<List<String>> result = new ArrayList<>();
